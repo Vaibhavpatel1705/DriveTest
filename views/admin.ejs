@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DriveTest : Admin</title>
+</head>
+<%- include('layouts/header'); -%>
+<body>
+    <%- include('layouts/navbar'); -%>
+    <!-- Page Header-->
+    <header class="masthead" style="background-image: url('assets/img/heroimage.jpg')">
+        <div class="container position-relative px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <div class="site-heading">
+                        <h1>Drive Test</h1>
+                        <span class="subheading">Admin Portal</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <h2>Manage G2 Slot</h2>
+                <form action="/add/appointment" method="post" enctype="multipart/form-data">
+                    <div class="control-group">
+                        <div class="form-group floating-label-form-group controls">
+                            Date : <input type="date" class="form-control"  name="date" required>
+                        </div>
+                    </div><br>
+                    <div class="control-group">
+                        <div class="form-group floating-label-form-group controls">
+                            Time : <input type="time" class="form-control"  name="time" min="09:00" max="14:00"  required>
+                        </div>
+                    </div><br>
+                    <div class="control-group">
+                        <div class="form-group floating-label-form-group controls">
+                            <input type="text" class="form-control" placeholder="Location"  name="location" required>
+                        </div>
+                    </div><br>
+                    
+                    <br>
+                    <div class="form-group">
+                        <button name="submit" class="btn btn-primary">Add Slot</button>
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Footer-->
+    <%- include('layouts/footer'); -%>
+    <%- include('layouts/scripts'); -%>       
+
+
+    
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DriveTest</title>
+</head>
+<body>
+    <h1>DriveTest - G2 Licence</h1>
+    <nav>
+        <ul>
+            <li><a href="/driverHome">Home</a></li>
+            <li><a href="/G2">G2 Licence</a></li>
+            <li><a href="/G">G Licence</a></li>
+            <li><a href="/auth/logout">Logout</a></li>
+        </ul>
+    </nav>
+
+    <form action="/posts/store" method="post" enctype="multipart/form-data"> 
+        <!-- <label for="fname">First Name</label>
+        <input type="text" name="fname" id="fname" required>
+        <br><br>
+        <label for="lname">Last Name</label>
+        <input type="text" name="lname" id="lname" required>
+        <br><br>
+        <label for="userid">User ID</label>
+        <input type="text" name="userid" id="userid" required>
+        <br><br>
+        <label for="dob">Date of Birth</label>
+        <input type="date" name="dob" id="dob" required>
+        <br><br>
+        <label for="Address">Address</label><br>
+        <input type="text" name="houseNo" id="houseNo" required placeholder="House Number"><br>
+        <input type="text" name="streetName" id="streetName" required placeholder="Street name"><br>
+        <input type="text" name="city" id="city" required placeholder="City"><br>
+        <input type="text" name="province" id="province" required placeholder="Province"><br>
+        <input type="text" name="postal" id="postal" required placeholder="Postal Code"><br>
+        <br><br>
+        <label for="car">Car Details</label><br>
+        <input type="text" name="make" id="make" required placeholder="Make"><br>
+        <input type="text" name="model" id="model" required placeholder="Model"><br>
+        <input type="text" name="year" id="year" required placeholder="Year"><br>
+        <input type="text" name="plat" id="plat" required placeholder="Plat Number"><br>
+        <br><br>
+        <label for="licence">Licence Number</label>
+        <input type="text" name="licence" id="licence" required>
+        <br><br>
+        <br><br>
+        <label for="img1">Supporting Documents</label><br><br>
+        <input type="file" name="doc1" id="doc1" >
+        <input type="file" name="doc2" id="doc2" >
+        <br><br> 
+        <h2>Select Date</h2>
+        <input type="date" name="date" id="date">
+        
+        <br><br>
+        <button name="submit">Submit</button>
+    </form>
+</body>
+</html>
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../views/css/main.css">
+    <title>DriveTest</title>
+</head>
+<%- include('layouts/header'); -%>
+<body>
+    
+    <%- include('layouts/navbar'); -%>
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url('assets/img/driver.jpg')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+                            <h1>Drive Test</h1>
+                            <span class="subheading">Driver's Portal</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Main Content-->
+        <div class="container px-4 px-lg-2">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <h2>G2 Slot Booking</h2>
+                    <form action="/view/app" method="post" enctype="multipart/form-data">
+                        <div class="control-group">
+                            <div class="form-group floating-label-form-group controls">
+                                <input type="date" class="form-control" name="date" id="date" required>                            
+                            </div>
+                        </div><br>
+                        <div class="control-group">
+                            <div class="form-group floating-label-form-group controls">
+                                <input type="text" class="form-control" name="examType" value="G2" hidden>                            
+                            </div>
+                        </div><br>
+                        <div class="form-group">
+                            <button name="submit" class="btn btn-primary">View Slot</button>
+                        </div>
+                    </form>
+                    
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <h2>Appointment/s available</h2>
+                            <% if(typeof g2Test != "undefined"){%>
+                                <% if(g2Test.length === 0) {%>
+                                    <h3>No appointments available</h3>
+                                <% } %>
+                                <% for(var i =0 ; i < g2Test.length ; i++) { %>
+                                    <hr>
+                                    
+                                    <form action="/app/book" method="post" >
+                                        Date : <input type="text" class="form-control" name="date" value="<%= g2Test[i].date%>" readonly>
+                                        Time : <input type="text" class="form-control" name="time" value="<%= g2Test[i].time%>" readonly>
+                                        Location : <input type="text" class="form-control" name="location" value="<%= g2Test[i].location%>" readonly><br>
+                                        <input type="text" class="form-control" name="appointment_appid" value="<%= g2Test[i].id%>" hidden>
+                                        
+                                        <button name="submit" class="btn btn-success">Book Slot</button><br>
+                                    </form>
+
+                                <%}%>
+                            <% } %>
+                        
+                    </div>
+                    <div class="col-md-10 col-lg-8 col-xl-7 success">
+                        <% if(typeof isAppBooked != "undefined"){ %>
+                            <div class="alert alert-success" role="alert">
+                                You have successfully booked appointment for G2 test
+                            </div>
+                            <div>
+                                Date : <%= app_details.date %> <br>
+                                Time : <%= app_details.time %> <br>
+                                Location : <%= app_details.location %>
+
+                            </div>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer-->
+        <%- include('layouts/footer'); -%>
+        <%- include('layouts/scripts'); -%>       
+
+</body>
+</html>

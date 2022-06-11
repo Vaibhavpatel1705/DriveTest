@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DriveTest : Admin</title>
+</head>
+<%- include('layouts/header'); -%>
+<body>
+    <%- include('layouts/navbar'); -%>
+    <!-- Page Header-->
+    <header class="masthead" style="background-image: url('assets/img/heroimage.jpg')">
+        <div class="container position-relative px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <div class="site-heading">
+                        <h1>Drive Test</h1>
+                        <span class="subheading">Admin Portal</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <h2>G2 - Test Results</h2>
+                    <% if(typeof resultG2 != "undefined") { %>
+                        <% if(resultG2.length === 0) {%>
+                            <div class="alert alert-info" role="alert">
+                                Currently no results available
+                            </div>
+                        <% } %>
+                        <% for(var i =0; i < resultG2.length ; i++) { %>
+                            First Name :  <%= resultG2[i].fname %> <br>
+                            Last Name :  <%= resultG2[i].lname %> <br>
+                            Status : <%= resultG2[i].examStatus %> <br>
+                            <hr>
+                        <% } %>
+                        <!-- <div class="alert alert-success" role="alert">
+                            Exam results sent for Card printing 
+                        </div> -->
+                        
+                    <% } %>       
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <h2>G - Test Results</h2>
+                <% if(typeof resultG != "undefined") { %>
+                    <% if(resultG.length === 0) {%>
+                        <div class="alert alert-info" role="alert">
+                            Currently no results available
+                        </div>
+                    <% } %>
+                    <% for(var i =0; i < resultG.length ; i++) { %>
+                        First Name :  <%= resultG[i].fname %> <br>
+                        Last Name :  <%= resultG[i].lname %> <br>
+                        Status : <%= resultG[i].examStatus %> <br> <hr>
+                    <% } %>
+                    <div class="alert alert-success" role="alert">
+                        Exam results sent for Card printing 
+                    </div>
+                <% } %>
+                
+            </div>
+        </div>
+    </div>
+    <!-- Footer-->
+    <%- include('layouts/footer'); -%>
+    <%- include('layouts/scripts'); -%>       
+
+
+    
+</body>
+</html>

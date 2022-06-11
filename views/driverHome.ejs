@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../views/css/main.css">
+    <title>DriveTest</title>
+</head>
+<%- include('layouts/header'); -%>
+<body>
+    
+    <%- include('layouts/navbar'); -%>
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url('assets/img/driver.jpg')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+                            <h1>Drive Test</h1>
+                            <span class="subheading">Driver's Portal</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Main Content-->
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <h2>Welcome to Drive Test</h2>
+
+                    <% if(typeof result != "undefined ") {%>
+                        <% if(result.length === 0) { %>
+                            <div class="alert alert-info" role="alert">
+                                Please Book a Slot for G2 / G Test.
+                            </div>
+                        <% } %>
+                        <% for(var i = 0; i < result.length ; i++) { %>
+                            <% if(result[i].examStatus === "Pass") { %>
+                                <div class="alert alert-success" role="alert">
+                                    Congratulations !!  <b><%= result[i].fname%></b>  you <b><%= result[i].examStatus %></b> the <%= result[i].examType%> test <br>
+                                    You will get License card in mail. <br>
+                                    Thank you
+                                </div>
+                            <% } %>
+                            
+                            
+                        <% } %>
+                    <% } %>
+
+                </div>
+            </div>
+        </div>
+        <!-- Footer-->
+        <%- include('layouts/footer'); -%>
+        <%- include('layouts/scripts'); -%>       
+
+</body>
+</html>
